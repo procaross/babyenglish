@@ -24,10 +24,10 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 
 
   const isOwn = session.data?.user?.email === data?.sender?.email
-  const seenList = (data.seen || [])
-    .filter((user) => user.email !== data?.sender?.email)
-    .map((user) => user.name)
-    .join(', ');
+  // const seenList = (data.seen || [])
+  //   .filter((user) => user.email !== data?.sender?.email)
+  //   .map((user) => user.name)
+  //   .join(', ');
 
   const container = clsx('flex gap-3 p-4', isOwn && 'justify-end');
   const avatar = clsx(isOwn && 'order-2');
@@ -73,7 +73,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
             <div>{data.body}</div>
           )}
         </div>
-        {isLast && isOwn && seenList.length > 0 && (
+        {/* {isLast && isOwn && seenList.length > 0 && (
           <div 
             className="
             text-xs 
@@ -83,7 +83,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
           >
             {`Seen by ${seenList}`}
           </div>
-        )}
+        )} */}
       </div>
     </div>
    );

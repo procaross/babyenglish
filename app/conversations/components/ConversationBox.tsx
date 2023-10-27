@@ -2,9 +2,9 @@
 
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Conversation, Message, User } from "@prisma/client";
+// import { Conversation, Message, User } from "@prisma/client";
 import { format } from "date-fns";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import clsx from "clsx";
 
 import Avatar from "@/app/components/Avatar";
@@ -22,7 +22,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
   selected 
 }) => {
   const otherUser = useOtherUser(data);
-  const session = useSession();
+  // const session = useSession();
   const router = useRouter();
 
   const handleClick = useCallback(() => {
@@ -35,23 +35,23 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     return messages[messages.length - 1];
   }, [data.messages]);
 
-  const userEmail = useMemo(() => session.data?.user?.email,
-  [session.data?.user?.email]);
+  // const userEmail = useMemo(() => session.data?.user?.email,
+  // [session.data?.user?.email]);
   
-  const hasSeen = useMemo(() => {
-    if (!lastMessage) {
-      return false;
-    }
+  // const hasSeen = useMemo(() => {
+  //   if (!lastMessage) {
+  //     return false;
+  //   }
 
-    const seenArray = lastMessage.seen || [];
+  //   const seenArray = lastMessage.seen || [];
 
-    if (!userEmail) {
-      return false;
-    }
+  //   if (!userEmail) {
+  //     return false;
+  //   }
 
-    return seenArray
-      .filter((user) => user.email === userEmail).length !== 0;
-  }, [userEmail, lastMessage]);
+  //   return seenArray
+  //     .filter((user) => user.email === userEmail).length !== 0;
+  // }, [userEmail, lastMessage]);
 
   const lastMessageText = useMemo(() => {
     if (lastMessage?.image) {
@@ -112,7 +112,8 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
               truncate 
               text-sm
               `,
-              hasSeen ? 'text-gray-500' : 'text-black font-medium'
+              // hasSeen ? 'text-gray-500' : 'text-black font-medium'
+              'text-gray-500'
             )}>
               {lastMessageText}
             </p>
