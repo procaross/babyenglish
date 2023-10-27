@@ -12,22 +12,16 @@ import ImageModal from "./ImageModal";
 
 interface MessageBoxProps {
   data: FullMessageType;
-  isLast?: boolean;
 }
 
 const MessageBox: React.FC<MessageBoxProps> = ({ 
   data, 
-  isLast
 }) => {
   const session = useSession();
   const [imageModalOpen, setImageModalOpen] = useState(false);
 
 
   const isOwn = session.data?.user?.email === data?.sender?.email
-  // const seenList = (data.seen || [])
-  //   .filter((user) => user.email !== data?.sender?.email)
-  //   .map((user) => user.name)
-  //   .join(', ');
 
   const container = clsx('flex gap-3 p-4', isOwn && 'justify-end');
   const avatar = clsx(isOwn && 'order-2');
@@ -73,17 +67,6 @@ const MessageBox: React.FC<MessageBoxProps> = ({
             <div>{data.body}</div>
           )}
         </div>
-        {/* {isLast && isOwn && seenList.length > 0 && (
-          <div 
-            className="
-            text-xs 
-            font-light 
-            text-gray-500
-            "
-          >
-            {`Seen by ${seenList}`}
-          </div>
-        )} */}
       </div>
     </div>
    );

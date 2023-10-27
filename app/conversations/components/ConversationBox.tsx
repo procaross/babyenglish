@@ -35,24 +35,6 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     return messages[messages.length - 1];
   }, [data.messages]);
 
-  // const userEmail = useMemo(() => session.data?.user?.email,
-  // [session.data?.user?.email]);
-  
-  // const hasSeen = useMemo(() => {
-  //   if (!lastMessage) {
-  //     return false;
-  //   }
-
-  //   const seenArray = lastMessage.seen || [];
-
-  //   if (!userEmail) {
-  //     return false;
-  //   }
-
-  //   return seenArray
-  //     .filter((user) => user.email === userEmail).length !== 0;
-  // }, [userEmail, lastMessage]);
-
   const lastMessageText = useMemo(() => {
     if (lastMessage?.image) {
       return '[照片]';
@@ -112,7 +94,6 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
               truncate 
               text-sm
               `,
-              // hasSeen ? 'text-gray-500' : 'text-black font-medium'
               'text-gray-500'
             )}>
               {lastMessageText}

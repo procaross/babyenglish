@@ -19,17 +19,11 @@ const Body: React.FC<BodyProps> = ({ initialMessages = [] }) => {
   
   const { conversationId } = useConversation();
 
-  // useEffect(() => {
-  //   axios.post(`/api/conversations/${conversationId}/seen`);
-  // }, [conversationId]);
-
   useEffect(() => {
     pusherClient.subscribe(conversationId)
     bottomRef?.current?.scrollIntoView();
 
     const messageHandler = (message: FullMessageType) => {
-      // axios.post(`/api/conversations/${conversationId}/seen`);
-
       setMessages((current) => {
         if (find(current, { id: message.id })) {
           return current;

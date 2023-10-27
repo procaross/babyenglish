@@ -22,7 +22,6 @@ export async function POST(
 
     const newMessage = await prisma.message.create({
       include: {
-        // seen: true,
         sender: true
       },
       data: {
@@ -34,11 +33,6 @@ export async function POST(
         sender: {
           connect: { id: currentUser.id }
         },
-        // seen: {
-        //   connect: {
-        //     id: currentUser.id
-        //   }
-        // },
       }
     });
 
@@ -58,9 +52,6 @@ export async function POST(
       include: {
         users: true,
         messages: {
-          // include: {
-          //     seen: true
-          // }
         }
       }
     });
