@@ -113,7 +113,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                 <IoTrash size={20} />
                               </div>
                               <div className="text-sm font-light text-neutral-600">
-                                删除联系人
+                                删除对话
                               </div>
                             </div>
                           </div>
