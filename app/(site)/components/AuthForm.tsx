@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Input from "@/app/components/inputs/Input";
 import AuthSocialButton from './AuthSocialButton';
 import Button from "@/app/components/Button";
+import Loading from "@/app/conversations/loading";
 import { toast } from "react-hot-toast";
 
 type Variant = 'LOGIN' | 'REGISTER';
@@ -22,6 +23,7 @@ const AuthForm = () => {
 
   useEffect(() => {
     if (session?.status === 'authenticated') {
+      setIsLoading(true);
       router.push('/conversations')
     }
   }, [session?.status, router]);
@@ -106,6 +108,7 @@ const AuthForm = () => {
 
   return ( 
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      {isLoading && <Loading/>}
       <div 
         className="
         bg-white
