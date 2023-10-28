@@ -130,7 +130,7 @@ const AuthForm = () => {
               errors={errors}
               required
               id="name" 
-              label="名称"
+              label="昵称"
             />
           )}
           <Input 
@@ -156,6 +156,11 @@ const AuthForm = () => {
               {variant === 'LOGIN' ? '登录' : '注册'}
             </Button>
           </div>
+          <div>
+          <AuthSocialButton disabled={isLoading} onClick={toggleVariant}>
+              {variant === 'LOGIN' ? '创建账号' : '登录'}
+            </AuthSocialButton>
+          </div>
         </form>
 
         <div className="mt-6">
@@ -172,7 +177,7 @@ const AuthForm = () => {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="bg-white px-2 text-gray-500">
-                或者...
+                第三方授权登录
               </span>
             </div>
           </div>
@@ -199,15 +204,6 @@ const AuthForm = () => {
             text-gray-500
           "
         >
-          <div>
-            {variant === 'LOGIN' ? '初来乍到?' : '已有账户?'} 
-          </div>
-          <div 
-            onClick={toggleVariant} 
-            className="underline cursor-pointer"
-          >
-            {variant === 'LOGIN' ? '创建账号' : '登录'}
-          </div>
         </div>
       </div>
     </div>

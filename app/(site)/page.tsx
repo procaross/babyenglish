@@ -23,18 +23,6 @@ const Auth = () => {
           src="/images/logo.png"
           alt="Logo"
         />
-        <h2 
-          className="
-            mt-6 
-            text-center 
-            text-3xl 
-            font-bold 
-            tracking-tight 
-            text-gray-900
-          "
-          >
-            开始之前，我们需要先验证身份...
-        </h2>
       </div>
       <AuthForm />      
   </div>

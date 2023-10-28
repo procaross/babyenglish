@@ -1,18 +1,23 @@
 import { IconType } from "react-icons";
 
 interface AuthSocialButtonProps {
-  icon: IconType
+  icon?: IconType;
+  children ?: React.ReactNode;
+  disabled ?: boolean;
   onClick: () => void;
 }
 
 const AuthSocialButton: React.FC<AuthSocialButtonProps> = ({ 
   icon: Icon,
+  children,
+  disabled,
   onClick,
 }) => {
   return ( 
     <button
       type="button"
       onClick={onClick}
+      disabled={disabled}
       className="
         inline-flex
         w-full 
@@ -30,7 +35,8 @@ const AuthSocialButton: React.FC<AuthSocialButtonProps> = ({
         focus:outline-offset-0
       "
     >
-      <Icon />
+      {Icon && <Icon />}
+      {children}
     </button>
    );
 }

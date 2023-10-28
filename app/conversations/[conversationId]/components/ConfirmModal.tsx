@@ -77,7 +77,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
           </Dialog.Title>
           <div className="mt-2">
             <p className="text-sm text-gray-500">
-              Are you sure you want to delete this conversation? This action cannot be undone.
+              确定删除该对话？该操作无法撤回。
             </p>
           </div>
         </div>
@@ -95,7 +95,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
           secondary
           onClick={onClose}
         >
-          Cancel
+          取消
         </Button>
       </div>
     </Modal>
