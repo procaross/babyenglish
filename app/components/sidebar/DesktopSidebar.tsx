@@ -40,7 +40,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
       ">
         <nav className="mt-4 flex flex-col justify-between">
           <ul role="list" className="flex flex-col items-center space-y-1">
-            {routes.map((item) => (
+            {routes.slice(0, 2).map((item) => (
               <DesktopItem
                 key={item.label}
                 href={item.href}
@@ -53,12 +53,24 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
           </ul>
         </nav>
         <nav className="mt-4 flex flex-col justify-between items-center">
-          <div 
-            onClick={() => setIsOpen(true)} 
-            className="cursor-pointer hover:opacity-75 transition"
-          >
-            <Avatar user={currentUser} />
-          </div>
+          <ul role="list" className="flex flex-col items-center space-y-4">
+            {routes.slice(-1).map((item) => (
+              <DesktopItem
+                key={item.label}
+                href={item.href}
+                label={item.label}
+                icon={item.icon}
+                active={item.active}
+                onClick={item.onClick}
+              />
+            ))}
+            <div 
+              onClick={() => setIsOpen(true)} 
+              className="cursor-pointer hover:opacity-75 transition"
+            >
+              <Avatar user={currentUser} />
+            </div>  
+          </ul>
         </nav>
       </div>
     </>
