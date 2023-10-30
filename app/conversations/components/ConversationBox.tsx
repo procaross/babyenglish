@@ -1,25 +1,25 @@
 'use client';
 
-import { useCallback, useMemo } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
+import { useCallback, useMemo } from 'react';
 // import { Conversation, Message, User } from "@prisma/client";
-import { format } from "date-fns";
+import { format } from 'date-fns';
 // import { useSession } from "next-auth/react";
-import clsx from "clsx";
+import clsx from 'clsx';
 
-import Avatar from "@/app/components/Avatar";
-import useOtherUser from "@/app/hooks/useOtherUser";
-import AvatarGroup from "@/app/components/AvatarGroup";
-import { FullConversationType } from "@/app/types";
+import Avatar from '@/app/components/Avatar';
+import AvatarGroup from '@/app/components/AvatarGroup';
+import useOtherUser from '@/app/hooks/useOtherUser';
+import { FullConversationType } from '@/app/types';
 
 interface ConversationBoxProps {
-  data: FullConversationType,
+  data: FullConversationType;
   selected?: boolean;
 }
 
-const ConversationBox: React.FC<ConversationBoxProps> = ({ 
-  data, 
-  selected 
+const ConversationBox: React.FC<ConversationBoxProps> = ({
+  data,
+  selected,
 }) => {
   const otherUser = useOtherUser(data);
   // const session = useSession();
@@ -41,26 +41,27 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     }
 
     if (lastMessage?.body) {
-      return lastMessage?.body
+      return lastMessage?.body;
     }
 
     return '暂无消息';
   }, [lastMessage]);
 
-  return ( 
+  return (
     <div
       onClick={handleClick}
-      className={clsx(`
-        w-full 
+      className={clsx(
+        `
         relative 
         flex 
+        w-full 
+        cursor-pointer 
         items-center 
         space-x-3 
-        p-3 
-        hover:bg-neutral-100
         rounded-lg
+        p-3
         transition
-        cursor-pointer
+        hover:bg-neutral-100
         `,
         selected ? 'bg-neutral-100' : 'bg-white'
       )}
@@ -73,35 +74,37 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
       <div className="min-w-0 flex-1">
         <div className="focus:outline-none">
           <span className="absolute inset-0" aria-hidden="true" />
-          <div className="flex justify-between items-center mb-1">
+          <div className="mb-1 flex items-center justify-between">
             <p className="text-md font-medium text-gray-900">
               {data.name || otherUser.name}
             </p>
             {lastMessage?.createdAt && (
-              <p 
+              <p
                 className="
                   text-xs 
-                  text-gray-400 
-                  font-light
+                  font-light 
+                  text-gray-400
                 "
               >
                 {format(new Date(lastMessage.createdAt), 'p')}
               </p>
             )}
           </div>
-          <p 
-            className={clsx(`
+          <p
+            className={clsx(
+              `
               truncate 
               text-sm
               `,
               'text-gray-500'
-            )}>
-              {lastMessageText}
-            </p>
+            )}
+          >
+            {lastMessageText}
+          </p>
         </div>
       </div>
     </div>
   );
-}
- 
+};
+
 export default ConversationBox;
