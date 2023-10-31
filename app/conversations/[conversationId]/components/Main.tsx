@@ -5,12 +5,11 @@ import { sendMessage } from '@/app/actions/sendMessage';
 import useConversation from '@/app/hooks/useConversation';
 import { FullMessageType } from '@/app/types';
 import { User } from '@prisma/client';
-import { CldUploadButton } from 'next-cloudinary';
 import { useEffect, useOptimistic, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { HiPhoto } from 'react-icons/hi2';
-import MessageInput from './MessageInput';
+import toast from 'react-hot-toast';
 import MessageSendButton from './MessageSendButton';
+import MessageSendInput from './MessageSendInput';
 import MessageContainer from './MessagesContainer';
 
 interface MainProps {
@@ -32,7 +31,7 @@ const Main: React.FC<MainProps> = ({ initialMessages = [] }) => {
     },
   });
 
-  const handleUpload = async (result: any) => {
+  const handleUploadPhoto = async (result: any) => {
     await sendMessage(null, conversationId, result.info.secure_url);
   };
 
@@ -69,13 +68,6 @@ const Main: React.FC<MainProps> = ({ initialMessages = [] }) => {
         lg:gap-4
       "
       >
-        <CldUploadButton
-          options={{ maxFiles: 1 }}
-          onUpload={handleUpload}
-          uploadPreset="nw1jh9kf"
-        >
-          <HiPhoto size={30} className="text-sky-500" />
-        </CldUploadButton>
         <form
           action={async (formData) => {
             setValue('message', '', { shouldValidate: true });
@@ -91,19 +83,20 @@ const Main: React.FC<MainProps> = ({ initialMessages = [] }) => {
             });
             const { error } = await sendMessage(formData, conversationId);
             if (error) {
-              console.log(error);
+              toast.error('Oooops! 消息发送失败！' + error);
             }
           }}
-          className="flex w-full items-center gap-2 lg:gap-4"
+          className="flex w-full flex-row-reverse items-center gap-2 lg:gap-4"
         >
-          <MessageInput
+          <MessageSendButton />
+          <MessageSendInput
             id="message"
             register={register}
+            handleUploadPhoto={handleUploadPhoto}
             errors={errors}
             required
             placeholder="发送一条消息"
           />
-          <MessageSendButton />
         </form>
       </div>
     </>

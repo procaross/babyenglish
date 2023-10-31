@@ -8,8 +8,10 @@ export default function MessageSendButton() {
     <button
       type="submit"
       disabled={pending}
-      className={`cursor-pointer rounded-full p-2 transition ${
-        pending ? 'cursor-wait bg-gray-400' : 'bg-sky-500 hover:bg-sky-600'
+      className={`ease-[cubic-bezier(0.35, 0, 0.25, 1)] cursor-pointer rounded-full p-2 transition-all duration-700 ${
+        pending
+          ? 'animate-bounce cursor-wait bg-gray-400'
+          : 'bg-sky-500 hover:bg-sky-600'
       }`}
     >
       {pending ? (
