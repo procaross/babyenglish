@@ -8,8 +8,9 @@ import { User } from '@prisma/client';
 import { CldUploadButton } from 'next-cloudinary';
 import { useEffect, useOptimistic, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { HiPaperAirplane, HiPhoto } from 'react-icons/hi2';
+import { HiPhoto } from 'react-icons/hi2';
 import MessageInput from './MessageInput';
+import MessageSendButton from './MessageSendButton';
 import MessageContainer from './MessagesContainer';
 
 interface MainProps {
@@ -102,19 +103,7 @@ const Main: React.FC<MainProps> = ({ initialMessages = [] }) => {
             required
             placeholder="发送一条消息"
           />
-          <button
-            type="submit"
-            className="
-            cursor-pointer 
-            rounded-full 
-            bg-sky-500 
-            p-2 
-            transition 
-            hover:bg-sky-600
-          "
-          >
-            <HiPaperAirplane size={18} className="text-white" />
-          </button>
+          <MessageSendButton />
         </form>
       </div>
     </>
