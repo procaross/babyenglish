@@ -9,8 +9,8 @@ import { CldUploadButton } from 'next-cloudinary';
 import { useEffect, useOptimistic, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { HiPaperAirplane, HiPhoto } from 'react-icons/hi2';
-import MessageContainer from './MessageContainer';
 import MessageInput from './MessageInput';
+import MessageContainer from './MessagesContainer';
 
 interface MainProps {
   initialMessages: FullMessageType[];
@@ -53,7 +53,7 @@ const Main: React.FC<MainProps> = ({ initialMessages = [] }) => {
     <>
       <MessageContainer
         optimisticMessages={optimisticMessages}
-        currentUser={currentUser?.id}
+        // currentUser={currentUser?.id}
       />
       <div
         className="
